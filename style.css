@@ -1,0 +1,93 @@
+/* public/style.css - ĐÃ DỌN DẸP */
+
+/* 1. CÀI ĐẶT CƠ BẢN */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    color: #000; 
+    background-color: #111;
+}
+
+/* --- ĐÃ XÓA CSS CHO .volume-control --- */
+
+/* 2. VIDEO NỀN */
+#background-video {
+    position: fixed; top: 50%; left: 50%;
+    width: 100%; height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover; object-position: center center; 
+    z-index: -2;
+    filter: grayscale(100%); 
+}
+
+/* 3. PRELOADER */
+#preloader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); color: white;
+    z-index: 9999; display: flex; justify-content: center; align-items: center;
+    font-size: 1.5rem; font-weight: 700; cursor: pointer; opacity: 1;
+    transition: opacity 1s ease-out, visibility 1s;
+}
+
+#preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+#preloader p { animation: pulse 1.5s infinite alternate; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+@keyframes pulse { 0% { opacity: 0.8; } 100% { opacity: 1; } }
+
+body.loaded #background-video { filter: grayscale(100%) blur(0px); }
+
+/* 4. CÁC PHẦN KHÁC */
+#main-wrapper {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 90%; max-width: 450px; display: flex; flex-direction: column; align-items: center; z-index: 10;
+}
+
+.top-section {
+    margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; text-align: center;
+    gap: 10px; /* Đảm bảo khoảng cách đồng đều */
+}
+
+#main-avatar {
+    width: 120px; height: 120px; border-radius: 50%; border: 3px solid rgba(0, 0, 0, 0.1); 
+    box-shadow: none; object-fit: cover; margin-bottom: 0px; background-color: #ccc;
+}
+
+.main-name { font-size: 3rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 0px; color: #000; text-shadow: none; line-height: 1.1; }
+.sub-text { font-size: 1.25rem; color: #111; font-weight: 700; margin-bottom: 0px; text-shadow: none; opacity: 0.9; }
+.location { font-size: 0.9rem; font-weight: 700; background: transparent; border: none; padding: 0; backdrop-filter: none; color: #000; display: flex; align-items: center; gap: 6px; box-shadow: none; }
+
+.glass-container {
+    width: 100%; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 25px; margin-top: 15px;
+}
+
+#discord-pill {
+    width: fit-content; min-width: 280px; max-width: 90%; background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 25px; 
+    padding: 12px 25px; display: flex; align-items: center; position: relative; box-shadow: none; 
+    transition: transform 0.2s;
+}
+#discord-pill:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.15); }
+
+#discord-pfp { width: 48px; height: 48px; border-radius: 50%; margin-right: 15px; border: 2px solid rgba(0,0,0,0.1); background-color: #ccc; }
+.discord-info { display: flex; flex-direction: column; align-items: flex-start; text-align: left; line-height: 1.2; }
+.discord-name { font-weight: 800; font-size: 1.05rem; color: #000; display: flex; align-items: center; gap: 6px; }
+.badge { background: #000; color: #fff; padding: 2px 7px; border-radius: 6px; font-size: 0.6rem; font-weight: 700; }
+.discord-status { font-size: 0.8rem; color: #333; font-weight: 600; margin-top: 2px; }
+
+#discord-activity-icon { position: absolute; right: 15px; width: 42px; height: 42px; border-radius: 8px; object-fit: cover; filter: none; border: 1px solid rgba(0,0,0,0.1); }
+
+.social-row { display: flex; justify-content: center; gap: 10px; padding: 10px 0; transform: scale(1.15); }
+.social-icon { font-size: 2.2rem; color: #000; text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 4px rgba(0, 0, 0, 0.4)); box-shadow: none; }
+.social-icon:hover { transform: scale(1.2) translateY(-3px); opacity: 0.7; cursor: pointer; }
+
+.volume-control {
+    position: fixed; top: 25px; left: 25px;
+    background: rgba(255, 255, 255, 0.2); 
+    color: black; width: 45px; height: 45px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100;
+    border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(8px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+.volume-control:hover { background: rgba(255, 255, 255, 0.4); }
